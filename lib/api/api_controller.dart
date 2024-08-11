@@ -105,7 +105,9 @@ class ApiController extends GetxController {
     log(sync.value.toString());
     if (sync.value) {
       for (var productitem in listofproducts) {
-        showallproducts.add(productbox.get(productitem));
+        if (!showallproducts.contains(productbox.get(productitem))) {
+          showallproducts.add(productbox.get(productitem));
+        }
       }
     } else {
       showallproducts.clear();

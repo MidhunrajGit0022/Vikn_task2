@@ -94,39 +94,45 @@ class _ShopListState extends State<ShopList> {
                                   Get.to(
                                       () => ProductList(data.productGroupID!));
                                 },
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          data.groupName.toString(),
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18),
-                                        ),
-                                        Text(
-                                          data.categoryName.toString(),
-                                          style: const TextStyle(fontSize: 16),
-                                        ),
-                                        Text(
-                                          data.kitchenName.toString(),
-                                          style: const TextStyle(fontSize: 14),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: screenSize.height * 0.002,
-                                    ),
-                                    const Divider(
-                                      color: Colors.grey,
-                                    ),
-                                    SizedBox(
-                                      height: screenSize.height * 0.002,
-                                    ),
-                                  ],
+                                child: Container(
+                                  color: Colors.white,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            data.groupName.toString(),
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          ),
+                                          Text(
+                                            data.categoryName.toString(),
+                                            style:
+                                                const TextStyle(fontSize: 16),
+                                          ),
+                                          Text(
+                                            data.kitchenName.toString(),
+                                            style:
+                                                const TextStyle(fontSize: 14),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: screenSize.height * 0.002,
+                                      ),
+                                      const Divider(
+                                        color: Colors.grey,
+                                      ),
+                                      SizedBox(
+                                        height: screenSize.height * 0.002,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
