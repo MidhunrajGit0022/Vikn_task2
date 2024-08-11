@@ -37,47 +37,21 @@ class _ShopListState extends State<ShopList> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        SizedBox(
+                          height: screenSize.height * 0.03,
+                        ),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color:
-                                        const Color.fromARGB(255, 30, 30, 34),
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  child: ClipRRect(
-                                    child: IconButton(
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      icon: const Icon(
-                                        Icons.arrow_back,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Row(
                               children: [
                                 Text(
                                   'Groups',
                                   style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 24,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
-                                ),
-                              ],
-                            ),
-                            const Row(
-                              children: [
-                                Text(
-                                  'Groups',
-                                  style: TextStyle(color: Colors.transparent),
                                 ),
                               ],
                             ),
@@ -86,26 +60,6 @@ class _ShopListState extends State<ShopList> {
                         SizedBox(
                           height: screenSize.height * 0.04,
                         ),
-                        SizedBox(
-                          width: screenSize.width * 0.9,
-                          child: ElevatedButton(
-                              onPressed: () {
-                                apicontroller.allProductData();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 18, horizontal: 50),
-                                  backgroundColor: const Color(0xFFE9E9E9),
-                                  foregroundColor: Colors.black),
-                              child: const Text(
-                                "Sync",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
-                              )),
-                        )
                       ],
                     ),
                   ),
@@ -132,12 +86,14 @@ class _ShopListState extends State<ShopList> {
                           itemCount: groupData.data!.length,
                           itemBuilder: (context, index) {
                             Data data = groupData.data![index];
-                            return GestureDetector(
-                              onTap: () {
-                                Get.to(() => ProductList(data.productGroupID!));
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(
+                                      () => ProductList(data.productGroupID!));
+                                },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

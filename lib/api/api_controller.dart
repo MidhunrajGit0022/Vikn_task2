@@ -21,7 +21,6 @@ class ApiController extends GetxController {
   RxBool sync = RxBool(false);
   Future<Groupdata?> fetchgrouplist() async {
     try {
-      // isLoading.value = true;
       showallproducts.clear();
       final url = Uri.parse(
           'https://www.api.viknbooks.com/api/v10/posholds/pos/product-group/list/');
@@ -39,21 +38,18 @@ class ApiController extends GetxController {
             "Date": "2024-08-10",
             "is_used_group": true
           }));
-      // log(response.body);
+
       final jsonData = jsonDecode(response.body);
 
       if (jsonData['StatusCode'] == 6000) {
         for (var item in jsonData["data"]) {
-          // log(item["ProductGroupID"].toString());
           await fetchproductlist(item["ProductGroupID"]);
           listofproducts.add(item["ProductGroupID"]);
         }
         allgrouplist = Groupdata.fromJson(jsonData);
-        // isLoading.value = false;
-        // log(productbox.get(16)..toString());
+
         return allgrouplist;
       } else {
-        // isLoading.value = false;
         log('failed');
         return null;
       }
@@ -82,15 +78,13 @@ class ApiController extends GetxController {
             "type": "",
             "PriceRounding": 2
           }));
-      // log(response.body);
+
       final Map<String, dynamic> data = json.decode(response.body);
       if (data['StatusCode'] == 6000) {
         Product product = Product.fromJson(data['data'][0]);
-
         await productbox.put(ProductGroupID, product);
         Product? storedProduct = productbox.get(ProductGroupID);
-        log(storedProduct?.productName.toString() ?? "No product found");
-
+        log("Products:${storedProduct!.productName.toString()}");
         return product;
       } else {
         log('failed');
@@ -116,6 +110,5 @@ class ApiController extends GetxController {
     } else {
       showallproducts.clear();
     }
-    log(showallproducts.length.toString());
   }
 }

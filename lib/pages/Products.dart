@@ -15,7 +15,6 @@ class _ProductListState extends State<ProductList> {
   @override
   void initState() {
     apicontroller.storedProductData(widget.productGroupID);
-
     super.initState();
   }
 
@@ -72,7 +71,7 @@ class _ProductListState extends State<ProductList> {
                                 Text(
                                   'Product',
                                   style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 24,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white),
                                 ),
@@ -105,10 +104,13 @@ class _ProductListState extends State<ProductList> {
                                       vertical: 18, horizontal: 50),
                                   backgroundColor: const Color(0xFFE9E9E9),
                                   foregroundColor: Colors.black),
-                              child: const Text(
-                                "Sync",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
+                              child: Obx(
+                                () => Text(
+                                  apicontroller.sync.value ? "Desync" : "Sync",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
                               )),
                         )
                       ],
@@ -140,6 +142,12 @@ class _ProductListState extends State<ProductList> {
                                   children: [
                                     Text(
                                       apicontroller
+                                          .showallproducts[index].productID
+                                          .toString(),
+                                      style: const TextStyle(fontSize: 14),
+                                    ),
+                                    Text(
+                                      apicontroller
                                           .showallproducts[index].productName,
                                       style: const TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -151,7 +159,8 @@ class _ProductListState extends State<ProductList> {
                                       style: const TextStyle(fontSize: 16),
                                     ),
                                     Text(
-                                      apicontroller.showallproducts[index].gstID
+                                      apicontroller
+                                          .showallproducts[index].vegOrNonVeg
                                           .toString(),
                                       style: const TextStyle(fontSize: 14),
                                     ),
@@ -171,6 +180,14 @@ class _ProductListState extends State<ProductList> {
                           : Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                SizedBox(
+                                  height: screenSize.height * 0.02,
+                                ),
+                                Text(
+                                  apicontroller.selectedproduct.value!.productID
+                                      .toString(),
+                                  style: const TextStyle(fontSize: 14),
+                                ),
                                 Text(
                                   apicontroller
                                       .selectedproduct.value!.productName
@@ -186,7 +203,8 @@ class _ProductListState extends State<ProductList> {
                                   style: const TextStyle(fontSize: 16),
                                 ),
                                 Text(
-                                  apicontroller.selectedproduct.value!.gstID
+                                  apicontroller
+                                      .selectedproduct.value!.vegOrNonVeg
                                       .toString(),
                                   style: const TextStyle(fontSize: 14),
                                 ),
